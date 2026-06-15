@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+    ✏️  REPLACE: Update your name and title in the line below
+  ============================================================ -->
+  <title>Your Name | Data Analyst</title>
+
+  <!-- ============================================================
+    ✏️  REPLACE: Update this description — 1 sentence about you
+         This appears in Google search results and link previews
+  ============================================================ -->
+  <meta name="description" content="Data Analyst specialising in banking and finance — SQL, Power BI, and data storytelling." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────────
+       DESIGN TOKENS
+       Change these to retheme the whole site
+    ───────────────────────────────────────────── */
+    :root {
+      --ink:        #0d1b2e;   /* deep navy — primary text & hero bg */
+      --brass:      #b8892a;   /* warm metallic accent */
+      --brass-light:#f5ecd6;   /* tinted backgrounds */
+      --slate:      #1e3152;   /* nav & card accents */
+      --white:      #ffffff;
+      --off-white:  #f6f8fb;
+      --surface:    #ffffff;
+      --border:     #dde3ed;
+      --text:       #1c2b3a;
+      --muted:      #5a6e86;
+      --green:      #156a3b;
+      --green-light:#e4f3ec;
+      --placeholder-bg:   #f0f4fa;
+      --placeholder-border: #b0c0d8;
+      --placeholder-text:   #4a6080;
+
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  16px;
+      --max-w:      860px;
+      --section-gap: 72px;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── PLACEHOLDER STYLES ─── */
+    /* Dashed boxes show the student exactly what to fill in */
+    .ph {
+      border: 2px dashed var(--placeholder-border);
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      color: var(--placeholder-text);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ph::before { content: '✏️'; font-size: 15px; flex-shrink: 0; }
+    .ph-block {
+      border: 2px dashed var(--placeholder-border);
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      color: var(--placeholder-text);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .ph-block::before { content: '✏️'; font-size: 18px; }
+
+    /* ─── LAYOUT HELPERS ─── */
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      background: var(--ink);
+      padding: 80px 24px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Signature element: ambient data-line pulse behind the hero */
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-niche {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 16px;
+    }
+
+    /* ✏️  REPLACE: Your name */
+    .hero-name {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-role {
+      font-size: 17px;
+      font-weight: 500;
+      color: #7a9cc4;
+      margin-bottom: 22px;
+    }
+
+    /* ✏️  REPLACE: Your brand statement */
+    .hero-statement {
+      font-size: 17px;
+      color: #b8cce4;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: var(--radius-sm);
+      transition: opacity 0.15s, transform 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary { background: var(--brass); color: var(--ink); }
+    .btn-outline { background: transparent; color: #b8cce4; border: 1.5px solid #2e4a6e; }
+
+    /* Photo slot */
+    .hero-photo-slot {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 3px solid var(--brass);
+      overflow: hidden;
+      background: var(--slate);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: end;
+      flex-shrink: 0;
+    }
+    .hero-photo-slot .ph-photo {
+      font-size: 13px;
+      color: #7a9cc4;
+      text-align: center;
+      padding: 12px;
+      line-height: 1.5;
+    }
+    .hero-photo-slot .ph-photo::before { content: '📷'; display: block; font-size: 28px; margin-bottom: 6px; }
+
+    /* ─────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────── */
+    .site-nav {
+      background: var(--slate);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.15);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 2px;
+    }
+    .nav-inner a {
+      color: #8eaacc;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 15px 18px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-inner a:hover { color: var(--brass); border-bottom-color: var(--brass); }
+
+    /* ─────────────────────────────────────────────
+       SECTION BASE
+    ───────────────────────────────────────────── */
+    .section {
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROJECT CARDS
+    ───────────────────────────────────────────── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 168px;
+      gap: 24px;
+      align-items: start;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 6px 24px rgba(13,27,46,0.09);
+      transform: translateY(-2px);
+    }
+
+    .project-type-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 8px;
+    }
+    .project-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .project-problem-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .project-desc {
+      font-size: 14.5px;
+      color: #3d5268;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .finding-strip {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #1c3a2a;
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+    .finding-strip strong { color: var(--green); }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0; }
+    .tag {
+      background: #edf2fb;
+      color: #2c4a8a;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .project-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .btn-card {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      transition: opacity 0.15s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .btn-card:hover { opacity: 0.82; transform: translateY(-1px); }
+    .btn-card-primary { background: var(--ink); color: var(--white); }
+    .btn-card-loom { background: #f5ecd6; color: #7a4e00; }
+    .btn-card-loom::before { content: '▶  '; }
+    .btn-card-secondary { background: #edf2fb; color: #2c4a8a; border: 1px solid #d0daf0; }
+
+    /* project placeholder card */
+    .project-card-ph {
+      background: var(--placeholder-bg);
+      border: 2px dashed var(--placeholder-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--placeholder-text);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .project-card-ph::before { content: '✏️  '; }
+
+    /* ─────────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 40px;
+      align-items: start;
+    }
+    .about-body p {
+      font-size: 15px;
+      color: #3d5268;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+    .cert-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .cert-item {
+      font-size: 13.5px;
+      color: var(--text);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.45;
+    }
+    .cert-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .cert-issuer {
+      font-size: 11.5px;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SKILLS
+    ───────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .skill-group-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f3f8;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-level {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--off-white);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    /* ─────────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────────── */
+    .contact-intro {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .contact-chip:hover {
+      border-color: var(--brass);
+      box-shadow: 0 2px 12px rgba(184,137,42,0.15);
+    }
+    .contact-chip .chip-icon { font-size: 18px; }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .site-footer {
+      background: var(--ink);
+      color: #5a7a9a;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+    .site-footer span { color: var(--brass); }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-slot { display: none; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-links { flex-direction: row; flex-wrap: wrap; }
+      .btn-card { flex: 1; min-width: 120px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .contact-links { flex-direction: column; }
+    }
+
+    /* ─── reduced motion ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+  HERO SECTION
+  WHAT TO REPLACE:
+    - "Your Name" → Wambua Susan Mueni
+    - "Banking & Finance · Data Analytics" → your niche (keep or adjust)
+    - "Data Analyst" → your job title
+    - The brand statement paragraph → use the formula from Session 1
+    - "View My Projects" button href → "#projects" (already set)
+    - "Download CV" button href → link to your CV PDF on GitHub
+    - Photo area → replace inner div with <img src="photo.jpg" alt="Your Name">
+================================================================ -->
+<section class="hero" aria-label="Introduction">
+
+  <!-- Signature: ambient data pulse SVG — subtle chart line in background -->
+  <svg class="hero-canvas" viewBox="0 0 900 300" preserveAspectRatio="none" aria-hidden="true">
+    <polyline
+      points="0,220 60,210 120,195 180,205 240,175 300,160 360,170 420,140 480,125 540,145 600,110 660,130 720,105 780,120 840,90 900,100"
+      fill="none" stroke="#b8892a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="stroke-dasharray" from="0,2000" to="2000,0" dur="3.5s" fill="freeze" />
+    </polyline>
+    <polyline
+      points="0,240 80,230 160,245 240,220 320,230 400,210 480,225 560,200 640,215 720,195 800,210 900,190"
+      fill="none" stroke="#2e5a8e" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+      <animate attributeName="stroke-dasharray" from="0,2000" to="2000,0" dur="4.5s" fill="freeze" />
+    </polyline>
+  </svg>
+
+  <div class="hero-inner">
+    <div>
+      <span class="hero-niche">Banking &amp; Finance · Data Analytics</span>
+      <h1 class="hero-name">Wambua Susan Mueni</h1>
+
+      <p class="hero-role">Data Analyst</p>
+      <p class="hero-statement">
+        <span class="ph">Results-driven Data Analyst skilled in Excel, SQL, Python, R, Power BI, and Tableau.
+           Experienced delivering data solutions across banking, 
+           SACCO, and NGO sectors to support smarter decision-making 
+           and business growth.</span>
+      </p>
+      <div class="hero-actions">
+        <!-- Button 1 — scrolls to projects -->
+        <a href="#projects" class="btn btn-primary">View My Projects</a>
+
+        <!-- ✏️  REPLACE: href → direct link to your CV PDF on GitHub
+             e.g. href="https://github.com/yourusername/portfolio/raw/main/cv.pdf" -->
+        <a href="#" class="btn btn-outline">Download CV</a>
+      </div>
+
+    </div>
+
+    <!-- ✏️  REPLACE: Delete the .ph-photo div and add:
+         <img src="photo.jpg" alt="Your Name" style="width:100%;height:100%;object-fit:cover;" />
+         Upload photo.jpg to your GitHub repo alongside this file. -->
+    <div class="hero-photo-slot" aria-hidden="true">
+      <div class="ph-photo">Add your photo here</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+  NAVIGATION — no changes needed, links are anchors
+================================================================ -->
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ================================================================
+  PROJECTS SECTION
+  ✏️  WHAT TO REPLACE:
+    - Project 1 (SQL): fill in title, description, finding, tags, and links
+    - Project 2 (Power BI): same
+    - Project 3: duplicate a card block or delete if not needed
+================================================================ -->
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Work</p>
+    <h2 class="section-heading" id="projects-heading">Projects</h2>
+
+    <!-- ── PROJECT 1: SQL ──────────────────────────────────── -->
+    <article class="project-card">
+      <div>
+
+        <!-- ✏️  REPLACE: e.g. "SQL · Data Analysis" -->
+        <p class="project-type-label">SQL · Data Analysis</p>
+
+        <!-- ✏️  REPLACE: Your project title -->
+        <h3 class="project-title">
+          <span class="ph">Your SQL Project Title — e.g. "Bank Customer Churn Analysis"</span>
+        </h3>
+
+        <p class="project-problem-label">Business Problem</p>
+
+        <!-- ✏️  REPLACE: 2–3 sentences.
+             What was the business context? What question were you answering?
+             What data did you use? -->
+        <p class="project-desc">
+          <span class="ph">Describe the business problem and what you analysed. 2–3 sentences. Start with the business context, not the dataset.</span>
+        </p>
+
+        <!-- ✏️  REPLACE: Your single most important finding — include a number -->
+        <div class="finding-strip">
+          <strong>Key Finding:</strong>
+          <span class="ph" style="border:none;background:none;padding:0;">Add your key finding here — must include a specific number or percentage.</span>
+        </div>
+
+        <!-- ✏️  REPLACE: Add your actual tools — delete or add tags as needed -->
+        <div class="tag-row">
+          <span class="tag">SQL</span>
+          <span class="tag">CTEs</span>
+          <span class="tag">Window Functions</span>
+          <span class="tag">GitHub</span>
+          <!-- Add more: <span class="tag">PostgreSQL</span> -->
+        </div>
+
+      </div>
+
+      <!-- ✏️  REPLACE all three hrefs with your real links -->
+      <div class="project-links">
+        <!-- href → your GitHub repo URL -->
+        <a href="https://github.com/YOUR-USERNAME/YOUR-REPO" class="btn-card btn-card-primary" target="_blank" rel="noopener">
+          View on GitHub
+        </a>
+        <!-- href → your Loom video URL -->
+        <a href="https://loom.com/share/YOUR-VIDEO-ID" class="btn-card btn-card-loom" target="_blank" rel="noopener">
+          Watch Walkthrough
+        </a>
+      </div>
+    </article>
+
+    <!-- ── PROJECT 2: POWER BI ─────────────────────────────── -->
+    <article class="project-card">
+      <div>
+
+        <!-- ✏️  REPLACE -->
+        <p class="project-type-label">Power BI · Dashboard</p>
+
+        <!-- ✏️  REPLACE -->
+        <h3 class="project-title">
+          <span class="ph">Your Power BI Project Title — e.g. "Customer Churn Executive Dashboard"</span>
+        </h3>
+
+        <p class="project-problem-label">Business Problem</p>
+
+        <!-- ✏️  REPLACE -->
+        <p class="project-desc">
+          <span class="ph">Describe what the dashboard was built to answer. Who is the audience? What decisions does it support?</span>
+        </p>
+
+        <!-- ✏️  REPLACE -->
+        <div class="finding-strip">
+          <strong>Outcome:</strong>
+          <span class="ph" style="border:none;background:none;padding:0;">Describe the dashboard's key capability or most important finding.</span>
+        </div>
+
+        <!-- ✏️  REPLACE: Update tags to match what you actually used -->
+        <div class="tag-row">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Data Modelling</span>
+          <span class="tag">Power BI Service</span>
+        </div>
+
+      </div>
+
+      <!-- ✏️  REPLACE all three hrefs -->
+      <div class="project-links">
+        <!-- href → your Power BI Service public link -->
+        <a href="https://app.powerbi.com/YOUR-REPORT-LINK" class="btn-card btn-card-primary" target="_blank" rel="noopener">
+          View Dashboard
+        </a>
+        <!-- href → your Loom walkthrough URL -->
+        <a href="https://loom.com/share/YOUR-VIDEO-ID" class="btn-card btn-card-loom" target="_blank" rel="noopener">
+          Watch Walkthrough
+        </a>
+        <!-- href → GitHub repo for the .pbix file and README -->
+        <a href="https://github.com/YOUR-USERNAME/YOUR-REPO" class="btn-card btn-card-secondary" target="_blank" rel="noopener">
+          GitHub →
+        </a>
+      </div>
+    </article>
+
+    <!-- ── PROJECT 3: OPTIONAL ─────────────────────────────── -->
+    <!-- ✏️  Either fill this in (Session 8 bonus project) or delete this block -->
+    <div class="project-card-ph">
+      Project 3 — Add a third project here once built, or delete this block. (Session 8)
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+  ABOUT SECTION
+  ✏️  WHAT TO REPLACE:
+    - Three paragraphs of body text
+    - Certifications list (name + issuer for each)
+================================================================ -->
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Background</p>
+    <h2 class="section-heading" id="about-heading">About</h2>
+
+    <div class="about-grid">
+
+      <div class="about-body">
+
+        <!-- ✏️  REPLACE — Para 1: Who you are
+             Background, degree/field of study, banking interest.
+             Example: "I graduated with a degree in Business Administration
+             and spent the past year completing four data analytics
+             certifications. My interest in banking comes from wanting to
+             work with data that has real financial consequences." -->
+        <p><span class="ph">Paragraph 1 — Who you are: your background, degree, and how you got into data analytics.</span></p>
+
+        <!-- ✏️  REPLACE — Para 2: What you do
+             Tools, methods, approach to analysis.
+             Example: "I work primarily in SQL for analysis and Power BI for
+             reporting. Every project I build starts with a business question,
+             not a dataset." -->
+        <p><span class="ph">Paragraph 2 — What you do: the tools you use, your analytical approach, what problems you solve.</span></p>
+
+        <!-- ✏️  REPLACE — Para 3: What you want
+             The role, the kind of team, a call to connect.
+             Example: "I am actively looking for a junior data analyst role
+             in banking or financial services. Feel free to connect." -->
+        <p><span class="ph">Paragraph 3 — What you want: the role you are looking for and an invitation to connect.</span></p>
+
+      </div>
+
+      <!-- ✏️  REPLACE — Add each certification you hold -->
+      <div class="cert-card">
+        <p class="cert-card-title">Certifications</p>
+
+        <!-- Duplicate this block for each certification -->
+        <div class="cert-item">
+          <span class="ph" style="padding:4px 8px;font-size:12px;">Certification Name</span>
+          <span class="cert-issuer">Issuing Organisation · Year</span>
+        </div>
+
+        <div class="cert-item">
+          <span class="ph" style="padding:4px 8px;font-size:12px;">Certification Name</span>
+          <span class="cert-issuer">Issuing Organisation · Year</span>
+        </div>
+
+        <div class="cert-item">
+          <span class="ph" style="padding:4px 8px;font-size:12px;">Certification Name</span>
+          <span class="cert-issuer">Issuing Organisation · Year</span>
+        </div>
+
+        <!-- ✏️  Add more cert blocks as needed -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+  SKILLS SECTION
+  ✏️  WHAT TO REPLACE:
+    - Each skill name and proficiency level
+    - Add or remove skill rows as needed
+    - Proficiency levels: Proficient / Familiar / Learning
+    - Do NOT claim Expert unless you can prove it
+================================================================ -->
+<section class="section" id="skills" aria-labelledby="skills-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Toolkit</p>
+    <h2 class="section-heading" id="skills-heading">Skills</h2>
+
+    <div class="skills-grid">
+
+      <!-- GROUP 1: ANALYSIS -->
+      <div class="skill-group">
+        <p class="skill-group-title">Analysis</p>
+        <!-- ✏️  REPLACE each row with your actual skills -->
+        <div class="skill-row">SQL (PostgreSQL / SQLite) <span class="skill-level">Proficient</span></div>
+        <div class="skill-row">Microsoft Excel <span class="skill-level">Proficient</span></div>
+        <!-- ✏️  Add or change: -->
+        <div class="skill-row"><span class="ph" style="padding:2px 6px;font-size:12px;">Add skill</span> <span class="skill-level">Level</span></div>
+      </div>
+
+      <!-- GROUP 2: VISUALISATION -->
+      <div class="skill-group">
+        <p class="skill-group-title">Visualisation</p>
+        <div class="skill-row">Power BI + DAX <span class="skill-level">Proficient</span></div>
+        <div class="skill-row">Excel Charts <span class="skill-level">Proficient</span></div>
+        <div class="skill-row"><span class="ph" style="padding:2px 6px;font-size:12px;">Add skill</span> <span class="skill-level">Level</span></div>
+      </div>
+
+      <!-- GROUP 3: TOOLS -->
+      <div class="skill-group">
+        <p class="skill-group-title">Tools &amp; Workflow</p>
+        <div class="skill-row">GitHub <span class="skill-level">Proficient</span></div>
+        <div class="skill-row">Loom <span class="skill-level">Proficient</span></div>
+        <div class="skill-row"><span class="ph" style="padding:2px 6px;font-size:12px;">Add skill</span> <span class="skill-level">Level</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+  CONTACT SECTION
+  ✏️  WHAT TO REPLACE:
+    - The intro sentence
+    - Your email address (both href and display text)
+    - Your LinkedIn profile URL
+    - Your GitHub profile URL
+    - DO NOT add a phone number on a public website
+================================================================ -->
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2 class="section-heading" id="contact-heading">Contact</h2>
+
+    <!-- ✏️  REPLACE: Personalise this sentence -->
+    <p class="contact-intro">
+      <span class="ph">Write one sentence about what you are open to — e.g. "Open to junior data analyst roles in banking and financial services in Nairobi."</span>
+    </p>
+
+    <div class="contact-links">
+
+      <!-- ✏️  REPLACE: your.email@gmail.com -->
+      <a href="mailto:your.email@gmail.com" class="contact-chip">
+        <span class="chip-icon">✉️</span>
+        your.email@gmail.com
+      </a>
+
+      <!-- ✏️  REPLACE: your LinkedIn profile URL
+           e.g. href="https://linkedin.com/in/yourname" -->
+      <a href="https://linkedin.com/in/YOUR-PROFILE" class="contact-chip" target="_blank" rel="noopener">
+        <span class="chip-icon">💼</span>
+        LinkedIn
+      </a>
+
+      <!-- ✏️  REPLACE: your GitHub profile URL
+           e.g. href="https://github.com/yourusername" -->
+      <a href="https://github.com/YOUR-USERNAME" class="contact-chip" target="_blank" rel="noopener">
+        <span class="chip-icon">🐙</span>
+        GitHub
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+  FOOTER
+  ✏️  REPLACE: Your name
+================================================================ -->
+<footer class="site-footer">
+  <span>Your Name</span> · Data Analyst · Built with GitHub Pages
+</footer>
+
+
+<!-- ================================================================
+  DEPLOYMENT CHECKLIST
+  Delete this comment block before publishing.
+
+  □ Replace every ✏️ placeholder above with real content
+  □ Add your photo — save as photo.jpg in the same folder as this file
+  □ Update <title> tag at the top with your name
+  □ Update <meta name="description"> with your 1-sentence summary
+  □ Replace all GitHub links with your actual repo URLs
+  □ Replace both Loom links with your actual video URLs
+  □ Replace Power BI link with your actual Service embed URL
+  □ Replace email address in Contact section
+  □ Replace LinkedIn and GitHub URLs in Contact section
+  □ Replace footer name
+  □ Delete the project-card-ph placeholder if not using a third project
+  □ Test all links in an incognito window
+  □ View on a phone — confirm nothing is broken
+  □ Push to GitHub → enable GitHub Pages under Settings > Pages
+================================================================ -->
+
+</body>
+</html>
