@@ -23,10 +23,10 @@ To identify which counties are converting economic growth into poverty reduction
 6. Compared GCP growth rate vs. absolute GCP level as predictors of poverty
 
 ## Key Findings
-- Fast GCP growth doesn't always translate into lower poverty — several high-growth counties still show high poverty rates.
-- Counties with the lowest poverty (e.g., Nairobi, Mombasa) tend to have large, established economies rather than the fastest recent growth.
-- Absolute GCP level shows a stronger relationship with poverty than growth rate alone, suggesting the *scale* of a county's economy matters more than its recent growth pace.
-
+## Key Findings
+- Counties with the fastest GCP growth (2013–2020) — Marsabit, Mandera, Elgeyo-Marakwet, West Pokot, Samburu — actually show higher, not lower, poverty rates. This reflects a "low base effect": small economies gaining modest absolute amounts show up as large percentage growth, without necessarily reducing poverty.
+- Absolute GCP level (2020) has a stronger relationship with low poverty than growth rate does — Nairobi and Mombasa combine large, established economies with the lowest poverty in the country.
+- Economic scale, not recent growth rate, appears to be the stronger indicator of lower poverty at the county level.
 ## Limitations
 - Small sample size (47 counties)
 - GCP data (2013–2020) and poverty data (2015) come from different years, so this is a structural analysis rather than a real-time comparison
