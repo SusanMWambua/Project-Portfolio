@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Data Analyst</title>
+  <meta name="description" content="Data Analyst specialising in banking and finance — SQL, Power BI, and data storytelling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:        #1B3BA8;   /* Deep Royal Blue — primary text & hero bg */
+      --brass:      #5B73E8;   /* Periwinkle Blue accent */
+      --brass-light:#EAF0FB;   /* Light Ice Blue — tinted backgrounds */
+      --slate:      #1F3A8F;   /* Dark Navy Blue — nav & card accents */
+      --white:      #ffffff;
+      --off-white:  #EAF0FB;
+      --surface:    #ffffff;
+      --border:     #c5d0f0;
+      --text:       #1B3BA8;
+      --muted:      #5B73E8;
+      --green:      #1F3A8F;
+      --green-light:#EAF0FB;
+      --placeholder-bg:   #EAF0FB;
+      --placeholder-border: #c5d0f0;
+      --placeholder-text:   #1F3A8F;
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  16px;
+      --max-w:      860px;
+      --section-gap: 72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── PLACEHOLDER STYLES ─── */ 
+    /* Dashed boxes show the student exactly what to fill in */
+    .ph {
+      border: 1px solid var(--placeholder-border);
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      color: var(--placeholder-text);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ph::before { content: ''; font-size: 15px; flex-shrink: 0; }
+    .ph-block {
+      border: 1px solid var(--placeholder-border);
+      background: var(--placeholder-bg);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      color: var(--placeholder-text);
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .ph-block::before { content: ''; font-size: 18px; }
+
+    /* ─── LAYOUT HELPERS ─── */
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      background: var(--ink);
+      padding: 80px 24px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Signature element: ambient data-line pulse behind the hero */
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 230px;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-niche {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5B73E8;
+      margin-bottom: 16px;
+    }
+
+    .hero-name {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-role {
+      font-size: 17px;
+      font-weight: 500;
+      color: #a0b4f5;
+      margin-bottom: 22px;
+    }
+
+    .hero-statement {
+      font-size: 17px;
+      color: #c5d0f8;
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: var(--radius-sm);
+      transition: opacity 0.15s, transform 0.15s;
+      white-space: nowrap;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-primary { background: #5B73E8; color: var(--white); }
+    .btn-outline { background: transparent; color: #c5d0f8; border: 1.5px solid #3a5abf; }
+
+    /* Photo slot */
+    .hero-photo-slot {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 3px solid #5B73E8;
+      overflow: hidden;
+      background: var(--slate);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: end;
+      flex-shrink: 0;
+    }
+    .hero-photo-slot .ph-photo {
+      font-size: 13px;
+      color: #7a9cc4;
+      text-align: center;
+      padding: 12px;
+      line-height: 1.5;
+    }
+    .hero-photo-slot .ph-photo::before { content: ''; display: block; font-size: 28px; margin-bottom: 6px; }
+
+    /* ─────────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────────── */
+    .site-nav {
+      background: var(--slate);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.15);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 2px;
+    }
+    .nav-inner a {
+      color: #a0b4f5;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 15px 18px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-inner a:hover { color: #ffffff; border-bottom-color: #5B73E8; }
+
+    /* ─────────────────────────────────────────────
+       SECTION BASE
+    ───────────────────────────────────────────── */
+    .section {
+      padding: var(--section-gap) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-of-type { border-bottom: none; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5B73E8;
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1B3BA8;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─────────────────────────────────────────────
+       PROJECT CARDS
+    ───────────────────────────────────────────── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 168px;
+      gap: 24px;
+      align-items: start;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      box-shadow: 0 6px 24px rgba(13,27,46,0.09);
+      transform: translateY(-2px);
+    }
+
+    .project-type-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .project-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .project-problem-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .project-desc {
+      font-size: 14.5px;
+      color: #3d5268;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .finding-strip {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #1c3a2a;
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+    .finding-strip strong { color: var(--green); }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0; }
+    .tag {
+      background: #EAF0FB;
+      color: #1B3BA8;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .project-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .btn-card {
+      display: block;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      transition: opacity 0.15s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .btn-card:hover { opacity: 0.82; transform: translateY(-1px); }
+    .btn-card-primary { background: #1B3BA8; color: var(--white); }
+    .btn-card-loom { background: #EAF0FB; color: #1F3A8F; }
+    .btn-card-loom::before { content: '▶  '; }
+    .btn-card-secondary { background: #EAF0FB; color: #1B3BA8; border: 1px solid #c5d0f0; }
+
+    /* project placeholder card */
+    .project-card-ph {
+      background: var(--placeholder-bg);
+      border: 1px solid var(--placeholder-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--placeholder-text);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .project-card-ph::before { content: ' '; }
+
+    /* ─────────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 40px;
+      align-items: start;
+    }
+    .about-body p {
+      font-size: 15px;
+      color: #3d5268;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+    .cert-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .cert-item {
+      font-size: 13.5px;
+      color: var(--text);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.45;
+    }
+    .cert-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .cert-issuer {
+      font-size: 11.5px;
+      color: var(--muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SKILLS
+    ───────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .skill-group-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f3f8;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-level {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--off-white);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    /* ─────────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────────── */
+    .contact-intro {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .contact-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 13px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .contact-chip:hover {
+      border-color: #5B73E8;
+      box-shadow: 0 2px 12px rgba(91,115,232,0.18);
+    }
+    .contact-chip .chip-icon { font-size: 18px; }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .site-footer {
+      background: #1B3BA8;
+      color: #a0b4f5;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+    .site-footer span { color: #ffffff; }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+
+    /* ── Tablet: 600px–860px ── */
+    @media (max-width: 860px) {
+      :root { --section-gap: 56px; }
+
+      .hero-inner {
+        grid-template-columns: 1fr 180px;
+        gap: 28px;
+      }
+      .hero-photo-slot {
+        width: 170px;
+        height: 170px;
+      }
+      .project-card {
+        grid-template-columns: 1fr 140px;
+        gap: 18px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr 220px;
+        gap: 28px;
+      }
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ── Mobile: ≤ 600px ── */
+    @media (max-width: 600px) {
+      :root { --section-gap: 44px; }
+
+      /* Nav — scrollable row, smaller text */
+      .nav-inner {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0;
+        padding: 0 12px;
+      }
+      .nav-inner::-webkit-scrollbar { display: none; }
+      .nav-inner a {
+        padding: 13px 12px;
+        font-size: 11px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* Hero — stack photo above text, centred */
+      .hero { padding: 48px 20px 52px; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 28px;
+        text-align: center;
+      }
+      /* Move photo to top on mobile */
+      .hero-photo-slot {
+        width: 150px;
+        height: 150px;
+        justify-self: center;
+        order: -1;
+      }
+      .hero-niche { font-size: 10px; }
+      .hero-name  { font-size: clamp(28px, 8vw, 38px); }
+      .hero-role  { font-size: 15px; }
+      .hero-statement {
+        font-size: 15px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-actions {
+        justify-content: center;
+        gap: 10px;
+      }
+      .btn {
+        font-size: 13px;
+        padding: 11px 18px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* General layout */
+      .wrap { padding: 0 16px; }
+      .section-heading { font-size: 22px; margin-bottom: 24px; }
+
+      /* Project cards — full width, links become row */
+      .project-card {
+        grid-template-columns: 1fr;
+        padding: 20px 18px 18px;
+        gap: 16px;
+      }
+      .project-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .project-links a:first-child:last-child {
+        grid-column: 1 / -1;
+      }
+      .btn-card {
+        font-size: 12px;
+        padding: 10px 10px;
+        text-align: center;
+      }
+      .project-title  { font-size: 17px; }
+      .project-desc   { font-size: 14px; }
+      .finding-strip  { font-size: 13px; }
+
+      /* About — single column, certs below text */
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .about-body p { font-size: 14px; }
+
+      /* Skills — single column */
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      /* Contact chips — full width */
+      .contact-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .contact-chip {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 16px;
+        font-size: 14px;
+        min-height: 48px; /* comfortable touch target */
+      }
+
+      /* Footer */
+      .site-footer { font-size: 12px; padding: 22px 16px; }
+    }
+
+    /* ── Very small phones: ≤ 380px ── */
+    @media (max-width: 380px) {
+      .hero-name { font-size: 26px; }
+      .hero-photo-slot { width: 120px; height: 120px; }
+      .project-links { grid-template-columns: 1fr; }
+      .nav-inner a { padding: 12px 10px; font-size: 10px; }
+    }
+
+    /* ─── reduced motion ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+  HERO SECTION
+  WHAT TO REPLACE:
+    - "Your Name" → Wambua Susan Mueni
+    - "Banking & Finance · Data Analytics" → your niche (keep or adjust)
+    - "Data Analyst" → your job title
+    - The brand statement paragraph → use the formula from Session 1
+    - "View My Projects" button href → "#projects" (already set)
+    - "Download CV" button href → link to your CV PDF on GitHub
+    - Photo area → replace inner div with <img src="photo.jpg" alt="Your Name">
+================================================================ -->
+<section class="hero" aria-label="Introduction">
+
+  <!-- Signature: ambient data pulse SVG — subtle chart line in background -->
+  <svg class="hero-canvas" viewBox="0 0 900 300" preserveAspectRatio="none" aria-hidden="true">
+    <polyline
+      points="0,220 60,210 120,195 180,205 240,175 300,160 360,170 420,140 480,125 540,145 600,110 660,130 720,105 780,120 840,90 900,100"
+      fill="none" stroke="#5B73E8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="stroke-dasharray" from="0,2000" to="2000,0" dur="3.5s" fill="freeze" />
+    </polyline>
+    <polyline
+      points="0,240 80,230 160,245 240,220 320,230 400,210 480,225 560,200 640,215 720,195 800,210 900,190"
+      fill="none" stroke="#2e5a8e" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+      <animate attributeName="stroke-dasharray" from="0,2000" to="2000,0" dur="4.5s" fill="freeze" />
+    </polyline>
+  </svg>
+
+  <div class="hero-inner">
+    <div>
+      <span class="hero-niche">Banking &amp; Finance · Data Analytics</span>
+      <h1 class="hero-name">Wambua Susan Mueni</h1>
+
+      <p class="hero-role">Data Analyst</p>
+      <p class="hero-statement">
+        <span class="ph">Results-driven Data Analyst skilled in Excel, SQL, Python, R, Power BI, and Tableau.
+           Experienced delivering data solutions across banking, 
+           SACCO, and NGO sectors to support smarter decision-making 
+           and business growth.</span>
+      </p>
+      <div class="hero-actions">
+        <!-- Button 1 — scrolls to projects -->
+        <a href="#projects" class="btn btn-primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> View My Projects</a>
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/blob/main/Susan_Mueni_CV.pdf" target="_blank" rel="noopener" class="btn btn-outline"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download CV</a>
+      </div>
+
+    </div>
+    
+    <div class="hero-photo-slot" aria-hidden="true">
+      <img src="Photo.jpeg" alt="Wambua Susan Mueni" style="width:130%;height:130%;object-fit:cover;" />
+    </div>
+  </div>
+</section>
+
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="#projects"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Projects</a>
+    <a href="#about"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>About</a>
+    <a href="#skills"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Skills</a>
+    <a href="#contact"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact</a>
+  </div>
+</nav>
+
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Work</p>
+    <h2 class="section-heading" id="projects-heading">Projects</h2>
+
+    <!-- ── PROJECT 1: SQL ──────────────────────────────────── -->
+    <article class="project-card">
+      <div>
+        <p class="project-type-label">SQL · Data Analysis</p>
+        <h3 class="project-title">
+          <span class="ph">Bank Customer Churn Analysis</span>
+        </h3>
+        <p class="project-problem-label">Business Problem</p>
+        <p class="project-desc">
+          <span class="ph">A retail bank is losing customers without a clear understanding of which segments are most at risk or why they are leaving. 
+            This project uses structured query analysis across 10,000 customer records to identify the key drivers of churn — segmented by geography, age, product holdings, and complaint history — and produces actionable retention recommendations.</span>
+        </p>
+        <div class="finding-strip">
+          <strong>Key Finding:</strong>
+          <span class="ph" style="border:none;background:none;padding:0;">Customers who filed a complaint had a 99.5% churn
+rate versus 0.1% for those who had not — making complaint history
+a near-certain predictor of customer exit.</span>
+        </div>
+
+        <div class="tag-row">
+          <span class="tag">SQL</span>
+          <span class="tag">CTEs</span>
+          <span class="tag">Window Functions</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/blob/main/SQL%20Project/README.md" class="btn-card btn-card-primary" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>View on GitHub
+        </a>
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/raw/refs/heads/main/SQL%20Walkthrough.mp4" class="btn-card btn-card-loom" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Watch Walkthrough
+        </a>
+      </div>
+    </article>
+    <!-- ── PROJECT 2: POWER BI ─────────────────────────────── -->
+    <article class="project-card">
+      <div>
+        <p class="project-type-label">Power BI · Dashboard</p>
+
+        <h3 class="project-title">
+          <span class="ph">Customer Churn Executive Dashboard</span>
+        </h3>
+
+        <p class="project-problem-label">The SQL analysis revealed what was happening — this dashboard
+makes it impossible to ignore, putting the findings in the hands
+of a bank manager who can act on them in real time.</p>
+
+        <!-- ✏️  REPLACE -->
+        <p class="project-desc">
+          <span class="ph">I built a two-page interactive Power BI dashboard on the same
+10,000-customer dataset, with a DAX Churn Rate measure that
+recalculates dynamically with every slicer interaction.
+Page 1 covers the executive summary; Page 2 goes deeper into
+behavioural factors and a stacked risk segment analysis that
+identifies the highest-priority retention target in the data.</span>
+        </p>
+        <div class="finding-strip">
+          <strong>Outcome:</strong>
+          <span class="ph" style="border:none;background:none;padding:0;">Stacking three risk factors — German geography, age 45–59, and
+a single product holding — identifies a customer segment with a
+74.8% churn rate: nearly 3 in 4 will leave.</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Data Modelling</span>
+          <span class="tag">Power BI Service</span>
+        </div>
+
+      </div>
+
+      <div class="project-links">
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/blob/main/Power%20BI%20Project/Project%20Portfolio.pbix" class="btn-card btn-card-primary" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>View Dashboard
+        </a>
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/raw/refs/heads/main/Power%20BI%20Walkthrough.mp4" class="btn-card btn-card-loom" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>Watch Walkthrough
+        </a>
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/blob/main/Power%20BI%20Project/README_PowerBI.md" class="btn-card btn-card-secondary" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub
+        </a>
+      </div>
+    </article>
+    <!-- ── PROJECT 3: PYTHON / GOVERNANCE DATA ─────────────────────────────── -->
+    <article class="project-card">
+      <div>
+        <p class="project-type-label">Python · Governance Data Analysis</p>
+        <h3 class="project-title">
+          <span class="ph">Kenya County Economic Growth &amp; Poverty Analysis</span>
+        </h3>
+        <p class="project-problem-label">Business Problem</p>
+        <p class="project-desc">
+          <span class="ph">County governments and policymakers often use GDP-style growth figures as a proxy for development, but percentage growth can mislead when it starts from a low economic base. This project analyzes official Gross County Product (GCP) data alongside World Bank poverty estimates across all 47 Kenyan counties to test whether fast-growing counties are actually reducing poverty — or just growing off a smaller base.</span>
+        </p>
+        <div class="finding-strip">
+          <strong>Key Finding:</strong>
+          <span class="ph" style="border:none;background:none;padding:0;">Counties with the fastest GCP growth (2013–2020) — Marsabit, Mandera, Elgeyo-Marakwet, West Pokot — actually show higher poverty rates, not lower. Absolute economic scale, not growth rate, is the stronger predictor of low poverty: Nairobi and Mombasa combine large established economies with the lowest poverty in the country.</span>
+        </div>
+
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">pandas</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Data Visualization</span>
+        </div>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/SusanMWambua/Project-Portfolio/blob/main/kenya-county-analysis/Kenya_County_GCP_Poverty_Analysis.ipynb" class="btn-card btn-card-primary" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>View Notebook
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Background</p>
+    <h2 class="section-heading" id="about-heading">About</h2>
+
+    <div class="about-grid">
+
+      <div class="about-body">
+
+    
+        <p><span class="ph">I graduated with a degree in Public Administration and Governance and have spent the past year completing four data analytics certifications. 
+          My interest in banking comes from wanting to work with data that has real financial consequences.</span></p>
+
+      
+        <p><span class="ph">'I work primarily in SQL for analysis and Power BI for reporting.
+           Every project I build starts with a business question, not a dataset.</span></p>
+
+      
+        <p><span class="ph">'I am actively looking for a junior data analyst role in banking or financial services. Feel free to connect.</span></p>
+
+      </div>
+
+      <!-- ✏️  REPLACE — Add each certification you hold -->
+      <div class="cert-card">
+        <p class="cert-card-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>Certifications</p>
+
+        <!-- Duplicate this block for each certification -->
+        <div class="cert-item">
+          <span style="font-size:13.5px;font-weight:600;color:#1B3BA8;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="20 6 9 17 4 12"/></svg>Public Administration and Governance</span>
+          <span class="cert-issuer">Mount Kenya University · 2024</span>
+        </div>
+
+        <div class="cert-item">
+          <span style="font-size:13.5px;font-weight:600;color:#1B3BA8;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="20 6 9 17 4 12"/></svg>Diploma in Data Management and Analytics</span>
+          <span class="cert-issuer">KCA University · Kasneb · 2025</span>
+        </div>
+
+        <div class="cert-item">
+          <span style="font-size:13.5px;font-weight:600;color:#1B3BA8;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="20 6 9 17 4 12"/></svg>Data Analytics with Power BI and Tableau</span>
+          <span class="cert-issuer">JKUAT · 2026</span>
+        </div>
+
+        <div class="cert-item">
+          <span style="font-size:13.5px;font-weight:600;color:#1B3BA8;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#5B73E8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="20 6 9 17 4 12"/></svg>Credit Analyst and Relationship Management</span>
+          <span class="cert-issuer">Kenya School of Credit Management · 2026</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills" aria-labelledby="skills-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Toolkit</p>
+    <h2 class="section-heading" id="skills-heading">Skills</h2>
+
+    <div class="skills-grid">
+
+      <!-- GROUP 1: ANALYSIS -->
+      <div class="skill-group">
+        <p class="skill-group-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analysis</p>
+        <div class="skill-row">SQL Server<span class="skill-level">Intermediate</span></div>
+        <div class="skill-row">Microsoft Excel <span class="skill-level">Intermediate</span></div>
+        <div class="skill-row">Python <span class="skill-level">Intermediate</span></div>
+        <div class="skill-row">R <span class="skill-level">Beginner</span></div>
+      </div>
+
+      <!-- GROUP 2: VISUALISATION -->
+      <div class="skill-group">
+        <p class="skill-group-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Visualisation</p>
+        <div class="skill-row">Power BI + DAX <span class="skill-level">Proficient</span></div>
+        <div class="skill-row">Excel Charts <span class="skill-level">Proficient</span></div>
+      </div>
+
+      <!-- GROUP 3: TOOLS -->
+      <div class="skill-group">
+        <p class="skill-group-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Tools &amp; Workflow</p>
+        <div class="skill-row">GitHub <span class="skill-level">Proficient</span></div>
+        <div class="skill-row">Loom <span class="skill-level">Proficient</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+  CONTACT SECTION
+  ✏️  WHAT TO REPLACE:
+    - The intro sentence
+    - Your email address (both href and display text)
+    - Your LinkedIn profile URL
+    - Your GitHub profile URL
+    - DO NOT add a phone number on a public website
+================================================================ -->
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="wrap">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2 class="section-heading" id="contact-heading">Contact</h2>
+
+    <!-- ✏️  REPLACE: Personalise this sentence -->
+    <p class="contact-intro">
+      <span class="ph"> Open to junior data analyst roles in banking and financial services.</span>
+    </p>
+
+    <div class="contact-links">
+
+      <a href="mailto:your.email@gmail.com" class="contact-chip">
+        <span class="chip-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        swambua6524@gmail.com
+      </a>
+
+      <a href="https://www.linkedin.com/in/susan-mueni-985b82224" class="contact-chip" target="_blank" rel="noopener">
+        <span class="chip-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+        Linkedln
+      </a>
+
+      <a href="https://github.com/SusanMWambua/Project-Portfolio" class="contact-chip" target="_blank" rel="noopener">
+        <span class="chip-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
+        GitHub
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>Susan Wambua</span> · Data Analyst · Built with GitHub Pages
+</footer>
+</body>
+</html>
